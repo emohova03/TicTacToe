@@ -54,16 +54,23 @@ public class TicTacToe {
     }
 
     private static boolean makeMove(char player, String move) {
-        if (move.length() != 3) return false;
 
-        char column = move.charAt(0);
-        char row = move.charAt(2);
+        String[] parts = move.split(" ");
+        if (parts.length != 2) return false;
+
+
+        char column = parts[0].charAt(0);
+        char row = parts[1].charAt(0);
+
 
         int colIndex = column - 'A';
         int rowIndex = row - '1';
 
-        if (colIndex < 0 || colIndex >= SIZE || rowIndex < 0 || rowIndex >= SIZE) return false;
-        if (board[rowIndex][colIndex] != '□') return false;
+
+        if (colIndex < 0 || colIndex >= SIZE || rowIndex < 0 || rowIndex >= SIZE || board[rowIndex][colIndex] != '□') {
+            return false;
+        }
+
 
         board[rowIndex][colIndex] = player;
         return true;
